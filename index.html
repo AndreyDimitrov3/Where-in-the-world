@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Countries Api</title>
+        
+        <link rel="stylesheet" href="countries.css">
+        <link rel="icon" type="image/x-icon" href="assets/earth-globe.png">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <main class="main">
+            <header class="header">
+                <h1 class="heading">Where in the world?</h1>
+                <div class="themeHolder" id="themeSwitcher" data-theme-picker> 
+                    <img src="assets/output-onlinepngtools.png" alt="Moon" class="moon">
+                    <button class="themeSwitcher"></button>
+                </div>
+
+            </header>
+    
+            <section class="section">
+                <nav class="nav">
+                    <input placeholder="Search for a country..." type="text" class="inputSearch" id="input" onkeydown="return /[a-z ]/i.test(event.key)">
+                    <img src="assets/search-sharp.png" alt="Search" class="searchIcon">
+                </nav>
+
+                <aside class="menu">
+                    <select name="filter" class="filter" id="filter">
+                        <option value="" selected disabled hidden>Filter by Region</option>
+                        <option value="Africa">Africa</option>
+                        <option value="America">America</option>
+                        <option value="Asia">Asia</option>
+                        <option value="Europe">Europe</option>
+                        <option value="Oceania">Oceania</option>
+                    </select>
+                </aside>
+            </section>
+
+            <section class="fetchSection" id="fetchSection"></section>
+            <div class="popUp hidden" id="popUp">
+                <button class="popUpButton" id="backButton"><span class="backButtonArrow">&#129104;</span>Back</button>
+                <div class="popUpNoButton"></div>
+            </div>
+        </main>
+
+        <script src="scripts/fetchCountries.js"></script>
+        <script src="scripts/themeSwitcher.js"></script>
+    </body>
+</html>
