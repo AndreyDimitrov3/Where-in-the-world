@@ -1,0 +1,282 @@
+*{
+    box-sizing: border-box;
+    font-family: "Nunito Sans";
+}
+
+[data-theme=light]{
+    --backgroundColor: hsl(0, 0%, 98%);
+    --backgroundColorElements: white;
+    --textColor: hsl(200, 15%, 8%);
+    --filterColor: none;
+}
+  
+[data-theme=dark]{
+    --backgroundColor: hsl(207, 26%, 17%);
+    --backgroundColorElements: hsl(209, 23%, 22%);
+    --textColor: white;
+    --filterColor: brightness(0) invert(1);
+}
+
+body, .main, .header, .inputSearch, .filter, .themeSwitcher, .countryPage, .popUp, .popUpButton{
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--backgroundColor);
+    margin: 0;
+}
+
+.main{
+    width: 100%;
+}
+
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 6%;
+    box-shadow: 0 2px 12px -10px black;
+    background-color: var(--backgroundColorElements);
+}
+
+.heading{
+    font-size: 24px;
+    margin: 24px 0;
+    color: var(--textColor);
+}
+
+.themeHolder{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.moon{
+    width: 18px;
+    height: 17px;
+    filter: var(--filterColor);
+}
+
+.themeSwitcher{
+    font-size: 16px;
+    width: 93px;
+    border: 0;
+    color: var(--textColor);
+    background-color: var(--backgroundColorElements);
+    cursor: pointer;
+}
+
+.section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 130px 0 48px 0;
+    padding: 0 6%;
+    width: 100%;
+}
+
+.nav{
+    position: relative;
+    width: 38%;
+}
+
+.inputSearch{
+    font-size: 16px;
+    height: 55px;
+    width: 100%;
+    padding: 0 2% 0 14%;
+    border: 0;
+    border-radius: 6px;
+    outline: transparent;
+    color: var(--textColor);
+    background-color: var(--backgroundColorElements);
+}
+
+.inputSearch::placeholder{
+    color: var(--textColor);
+
+}
+
+.searchIcon{
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    width: 20px;
+    height: 20px;
+    transform: translateY(-50%);
+    filter: brightness(0) saturate(100%) invert(51%) sepia(0%) saturate(17%) hue-rotate(199deg) brightness(99%) contrast(84%);
+}
+
+.filter{
+    font-size: 14px;
+    width: 200px;
+    height: 55px;
+    padding-left: 20px;
+    border: 0;
+    border-right: 14px solid transparent;
+    border-radius: 6px;
+    outline: 0;
+    color: var(--textColor);
+    background-color: var(--backgroundColorElements);
+    cursor: pointer;
+}
+
+.fetchSection{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 75px 6%;
+    padding: 0 6% 40px 6%;
+}
+
+.countryPage{
+    border-radius: 6px;
+    background-color: var(--backgroundColorElements);
+    cursor: pointer;
+}
+
+.countryFlag{
+    border-radius: 6px 6px 0 0;
+    width: 100%;
+    height: 47%;
+}
+
+.dataInformation{
+    padding: 6px 18px;
+    font-weight: 700;
+}
+
+.countryName{
+    font-size: 18px;
+    color: var(--textColor);
+}
+
+.dataValueHolder{
+    font-size: 14px;
+    margin: 6px 0;
+    color: var(--textColor);
+}
+
+.dataValue{
+    font-weight: 400;
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
+.popUp{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 162px 6% 40px 6%;
+    color: var(--textColor);
+    background-color: var(--backgroundColor);
+}
+
+.popUpButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    width: 140px;
+    height: 42px;
+    margin-bottom: 80px;
+    border: 0;
+    border-radius: 6px;
+    color: var(--textColor);
+    background-color: var(--backgroundColorElements);
+    box-shadow: 0px 0px 30px -17px rgba(0, 0, 0, 1);
+    cursor: pointer;
+}
+
+.backButtonArrow{
+    font-size: 22px;
+    padding-right: 8px;
+}
+
+.popUpNoButton{
+    display: flex;
+    gap: 10%;
+}
+
+.countryFlagPopUp{
+    width: 44%;
+    min-width: 44%;
+    height: 400px;
+}
+
+.popUpNoImg{
+    display: flex;
+    flex-direction: column;
+}
+
+.popUpH1{
+    margin: 32px 0 12px 0;
+}
+
+.popUpInformationHolder{
+    display: grid;
+    grid-template-areas: 
+        "item1 item6"
+        "item2 item7"
+        "item3 item8"
+        "item4 ."
+        "item5 .";
+    margin-bottom: 60px;
+}
+.popUpInformation:nth-child(1) { grid-area: item1; }
+.popUpInformation:nth-child(2) { grid-area: item2; }
+.popUpInformation:nth-child(3) { grid-area: item3; }
+.popUpInformation:nth-child(4) { grid-area: item4; }
+.popUpInformation:nth-child(5) { grid-area: item5; }
+.popUpInformation:nth-child(6) { grid-area: item6; }
+.popUpInformation:nth-child(7) { grid-area: item7; }
+.popUpInformation:nth-child(8) { grid-area: item8; }
+
+.popUpInformation{
+    font-size: 16px;
+    font-weight: 700;
+    margin: 16px 0 -5px 0;
+}
+
+.popUpInformationPadding{
+    padding-right: 105px;
+}
+
+.popUpValue{
+    font-weight: 400;
+}
+
+#borderCountriesP{
+    display: inline;
+    margin-right: 8px;
+}
+
+.borderButtonsContainer{
+    
+}
+
+.borderButton{
+    font-size: 15px;
+    display: inline;
+    width: auto;
+    height: 30px;
+    border-radius: 4px;
+    padding: 0 25px;
+    margin: 0 8px 8px 0;
+}
+
+.hidden{
+    display: none !important;
+}
