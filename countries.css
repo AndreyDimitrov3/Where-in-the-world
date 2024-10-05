@@ -8,6 +8,7 @@
     --backgroundColorElements: white;
     --textColor: hsl(200, 15%, 8%);
     --filterColor: none;
+    --filterImg: brightness(0) saturate(100%) invert(4%) sepia(13%) saturate(1083%) hue-rotate(155deg) brightness(98%) contrast(92%);
 }
   
 [data-theme=dark]{
@@ -15,6 +16,7 @@
     --backgroundColorElements: hsl(209, 23%, 22%);
     --textColor: white;
     --filterColor: brightness(0) invert(1);
+    --filterImg: brightness(0) invert(1); 
 }
 
 body, .main, .header, .inputSearch, .filter, .themeSwitcher, .countryPage, .popUp, .popUpButton{
@@ -125,9 +127,30 @@ body{
     border-right: 14px solid transparent;
     border-radius: 6px;
     outline: 0;
+    -webkit-appearance: none;
+    appearance: none;
     color: var(--textColor);
     background-color: var(--backgroundColorElements);
     cursor: pointer;
+}
+
+.custom-select-wrapper{
+    position: relative;
+}
+
+.custom-arrow{
+    position: absolute;
+    right: 11%;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    transition: transform 0.3s ease-in-out;
+    filter: var(--filterImg);
+    pointer-events: none;
+}
+  
+.custom-select-wrapper.open .custom-arrow{
+    transform: translateY(-50%) rotate(0deg);
+    margin-bottom: 4px;
 }
 
 .fetchSection{
@@ -135,10 +158,12 @@ body{
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 75px 6%;
     padding: 0 6% 40px 6%;
+    margin-bottom: 40px;
 }
 
 .countryPage{
     border-radius: 6px;
+    overflow: hidden;
     background-color: var(--backgroundColorElements);
     cursor: pointer;
 }
@@ -178,8 +203,9 @@ body{
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 101%;
     padding: 162px 6% 40px 6%;
+    overflow: auto;
     color: var(--textColor);
     background-color: var(--backgroundColor);
 }
@@ -263,10 +289,6 @@ body{
     margin-right: 8px;
 }
 
-.borderButtonsContainer{
-    
-}
-
 .borderButton{
     font-size: 15px;
     display: inline;
@@ -279,4 +301,404 @@ body{
 
 .hidden{
     display: none !important;
+}
+
+@media screen and (min-width: 1600px) {
+    .heading{
+        font-size: 28px;
+    }
+
+    .themeSwitcher{
+        font-size: 18px;
+        width: 110px;
+    }
+
+    .inputSearch{
+        font-size: 18px;
+    }
+
+    .filter{
+        font-size: 16px;
+        width: 220px;
+    }
+
+    .countryFlag{
+        height: 50%;
+    }
+    
+    .countryName{
+        font-size: 22px;
+        margin: 14px 0;
+    }
+
+    .dataValueHolder{
+        font-size: 18px;
+    }
+
+    .popUpButton{
+        font-size: 20px;
+        height: 50px; 
+    }
+
+    .popUpH1{
+        font-size: 40px;
+        margin-top: 0;
+    }
+
+    .popUpInformationHolder{
+        margin-bottom: 45px;
+    }
+
+    .popUpInformation {
+        font-size: 18px;
+    }
+    
+    .borderButton{
+        font-size: 18px;
+        height: 40px; 
+    }
+}
+
+@media screen and (min-width: 1800px) {
+    .heading{
+        font-size: 32px;
+    }
+
+    .themeSwitcher{
+        font-size: 20px;
+        width: 130px;
+    }
+
+    .inputSearch{
+        font-size: 20px;
+        height: 65px;
+    }
+
+    .searchIcon{
+        width: 24px;
+        height: 24px;
+    }
+
+    .filter{
+        font-size: 18px;
+        width: 250px;
+    }
+    
+    .countryName{
+        font-size: 24px;
+        margin: 12px 0;
+    }
+
+    .dataValueHolder{
+        font-size: 19px;
+    }
+
+    .popUpButton{
+        font-size: 22px;
+        height: 55px; 
+    }
+
+    .popUpH1{
+        font-size: 46px;
+        margin-top: 0;
+    }
+
+    .popUpInformationHolder{
+        margin-bottom: 40px;
+    }
+
+    .popUpInformation {
+        font-size: 19px;
+    }
+    
+    .borderButton{
+        font-size: 19px;
+        height: 45px; 
+    }
+}
+
+@media screen and (max-height: 900px) {
+    .popUp{
+        padding-top: 140px;
+    }
+
+    .popUpH1 {
+        margin: 0 0 12px 0;
+    }
+}
+
+@media screen and (max-height: 830px) {
+    .popUp{
+        padding-top: 130px;
+    }
+
+    .popUpButton{
+        margin-bottom: 50px;
+    }
+
+    .borderButton{
+        margin-bottom: 8px;
+    }
+}
+
+@media screen and (max-height: 775px) {
+    .popUp{
+        padding-top: 115px;
+    }
+
+    .popUpButton{
+        margin-bottom: 40px;
+    }
+
+    .borderButton{
+        margin-bottom: 8px;
+    }
+}
+
+@media screen and (max-height: 675px) {
+    .popUp{
+        padding-top: 110px;
+    }
+
+    .borderButton{
+        margin-bottom: 8px;
+    }
+}
+
+@media screen and (max-width: 1300px){
+    .header{
+        padding: 0 3%;
+    }
+
+    .section{
+        padding: 0 3%;
+    }
+
+    .fetchSection{
+        gap: 50px 5%;
+        padding: 0 3%;
+    }
+
+    .popUp{
+        padding-left: 3%;
+        padding-right: 3%;
+    }
+
+    .popUpH1{
+        text-align: center;
+    }
+
+    .popUpNoButton{
+        gap: 6%;
+    }
+
+    .popUpInformationHolder{
+        justify-content: space-around;
+    }
+
+    .popUpInformation{
+        width: fit-content;
+    }
+
+    .popUpInformationPadding{
+        padding: 0;
+    }
+
+    .popUpNoButton{
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .countryFlagPopUp{
+        width: 500px;
+        max-width: 96%;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 1150px){
+    .fetchSection{
+        grid-template-columns: 1fr 1fr 1fr
+    }
+}
+
+@media screen and (max-width: 900px){
+    .countryFlag{
+        height: 50%;
+    }
+
+    .countryName{
+        margin: 6px 0;
+    }
+
+    .inputSearch{
+        font-size: 14px;
+        height: 48px;
+        width: 280px;
+        padding: 0 2% 0 50px;
+    }
+
+    .filter{
+        width: 180px;
+        height: 48px;
+    }
+}
+
+@media screen and (max-width: 730px){
+    .fetchSection{
+        grid-template-columns: 1fr 1fr;
+        gap: 50px 8%;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .fetchSection{
+        grid-template-columns: 1fr 1fr;
+        gap: 50px 5%;
+    }
+
+    .inputSearch{
+        font-size: 14px;
+        height: 48px;
+        width: 260px;
+        padding: 0 2% 0 50px;
+    }
+
+    .filter{
+        width: 160px;
+        height: 48px;
+    }
+    
+    .searchIcon{
+        left: 15px;
+    }
+
+    .popUp {
+        padding-top: 120px;
+    }
+
+    .popUpButton{
+        margin-bottom: 40px;
+    }
+    
+    .borderButton{
+        margin-bottom: 8px;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .section{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+    }
+
+    .inputSearch{
+        font-size: 14px;
+        height: 48px;
+        width: 260px;
+        padding: 0 2% 0 50px;
+    }
+
+    .filter{
+        width: 160px;
+        height: 48px;
+    }
+    
+    .searchIcon{
+        left: 15px;
+    }
+
+    .countryFlagPopUp{
+        max-width: 100%;
+    }
+
+    .popUpNoImg{
+        width: 100%;
+    }
+
+    .popUpInformationHolder{
+        justify-content: space-between;
+    }
+}
+
+@media screen and (max-width: 475px){
+    .header{
+        padding: 0 2%;
+    }
+
+    .heading{
+        font-size: 20px;
+    }
+
+    .section{
+        padding: 0 2%;
+    }
+
+    .fetchSection{
+        gap: 40px 4%;
+        padding: 0 2%;
+    }
+
+    .countryName{
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 425px){
+    .heading{
+        font-size: 18px;
+    }
+
+    .themeSwitcher{
+        font-size: 15px;
+        width: 88px;
+    }
+
+    .section{
+        padding: 0 6%;
+    }
+
+    .fetchSection{
+        grid-template-columns: 1fr;
+        padding: 0 6%;
+    }
+
+    .countryFlag{
+        height: 54%;
+    }
+    
+    .popUpNoButton{
+        gap: 20px;
+    }
+
+    .popUpH1{
+        margin-bottom: 0;
+    }
+
+    .popUpInformationHolder{
+        grid-template-areas:
+        "item1"
+        "item2"
+        "item3"
+        "item4"
+        "item5"
+        "item6"
+        "item7"
+        "item8";
+    }
+
+    .popUpInformation:nth-child(5) { margin-bottom: 15px; }
+}
+
+@media screen and (max-width: 350px){
+    .section{
+        padding: 0 4%;
+    }
+
+    .fetchSection{
+        gap: 40px 0;
+        padding: 0 4%;
+    }
 }
