@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Declare Variables
-    let section = document.getElementById('fetchSection');
     let input = document.getElementById('input');
     let popUp = document.getElementById('popUp');
-    let backButton = document.getElementById('backButton');
     let popUpNoButton = document.querySelector('.popUpNoButton');
     let countryData = [];
+    let visibleCountries = [];
+    let regionFilteredCountries = []; // Declare the variable here
 
     // Close Popup
-    backButton.addEventListener('click', closePopUp);
+    document.getElementById('backButton').addEventListener('click', closePopUp);
     function closePopUp() {
         popUp.classList.add('hidden');
         document.body.classList.remove('no-scroll');
@@ -17,14 +17,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Fetch Data
     fetch('data.json')
-        .then(response => response.ok ? response.json() : Promise.reject('There was an error'))
-        .then((data) => {
-            countryData = data;
-            renderCountries(data);
-            attachEventListeners();
-        });
+    .then(response => response.ok ? response.json() : Promise.reject('There was an error'))
+    .then((data) => {
+        countryData = data; // Save the data to a variable to reuse it
+        regionFilteredCountries = data; // Save regionFilteredCountries to all countries
+        renderCountries(data);
+        attachEventListeners();
+    });
 
-    // Search Functionality
+    // Search function
     input.addEventListener('input', inputSearch);
     function inputSearch() {
         let filter = input.value.toUpperCase();
@@ -33,14 +34,14 @@ document.addEventListener('DOMContentLoaded', function () {
         for (let i = 0; i < countryPages.length; i++) {
             let countryNameElement = countryPages[i].querySelector(".countryName");
             countryPages[i].cachedText = countryNameElement.textContent || countryNameElement.innerText;
-            if (countryPages[i].cachedText.toUpperCase().indexOf(filter) > -1) {
-                if (countryPages[i].classList.contains('hidden')) {
-                    countryPages[i].classList.remove('hidden');
-                }
+            let countryNameUpperCase = countryPages[i].cachedText.toUpperCase();
+            let matchesSearch = countryNameUpperCase.indexOf(filter) > -1;
+            let matchesRegion = regionFilteredCountries.some(country => country.name.toUpperCase() === countryNameUpperCase);
+            
+            if (matchesSearch && matchesRegion) {
+                countryPages[i].classList.remove('hidden');
             } else {
-                if (!countryPages[i].classList.contains('hidden')) {
-                    countryPages[i].classList.add('hidden');
-                }
+                countryPages[i].classList.add('hidden');
             }
         }
     }
@@ -64,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
             `;
         }
 
-        section.innerHTML = htmlContent;
+        document.getElementById('fetchSection').innerHTML = htmlContent;
     }
 
     // Attach Event Listeners for Country Cards
@@ -155,4 +156,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
         return populationArray.join("");
     }
+
+    document.getElementById('filter').addEventListener('change', function() {
+        let selectedRegion = this.value;
+
+        if (selectedRegion === 'All' || selectedRegion === 'default') {
+            regionFilteredCountries = countryData;
+        } else {
+            regionFilteredCountries = countryData.filter(country => country.region === selectedRegion);
+        }
+
+        // Reapply the search filter after region change
+        inputSearch();
+    });
 });
