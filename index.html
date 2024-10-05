@@ -30,14 +30,18 @@
                 </nav>
 
                 <aside class="menu">
-                    <select name="filter" class="filter" id="filter">
-                        <option value="" selected disabled hidden>Filter by Region</option>
-                        <option value="Africa">Africa</option>
-                        <option value="America">America</option>
-                        <option value="Asia">Asia</option>
-                        <option value="Europe">Europe</option>
-                        <option value="Oceania">Oceania</option>
-                    </select>
+                    <div class="custom-select-wrapper">
+                      <select name="filter" class="filter" id="filter">
+                        <option value="default" class="option" selected disabled hidden>Filter by Region</option>
+                        <option value="All" class="option">All</option>
+                        <option value="Africa" class="option">Africa</option>
+                        <option value="Americas" class="option">Americas</option>
+                        <option value="Asia" class="option">Asia</option>
+                        <option value="Europe" class="option">Europe</option>
+                        <option value="Oceania" class="option">Oceania</option>
+                      </select>
+                      <img src="assets/icon-arrow-down.svg" alt="Arrow" class="custom-arrow" id="customArrow">
+                    </div>
                 </aside>
             </section>
 
@@ -50,5 +54,6 @@
 
         <script src="scripts/fetchCountries.js"></script>
         <script src="scripts/themeSwitcher.js"></script>
+        <script src="scripts/arrowDropdown.js"></script>
     </body>
 </html>
